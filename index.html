@@ -3,1297 +3,817 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AdVortex | Where Digital Dreams Become Reality</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <title>ADVORTEX: Transform Traffic Into Triumph</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Premium CSS Reset & Variables */
-        :root {
-            --primary: #8b5cf6;
-            --primary-dark: #7c3aed;
-            --primary-light: #a78bfa;
-            --secondary: #06b6d4;
-            --dark: #0f172a;
-            --darker: #0a0f1f;
-            --light: #f8fafc;
-            --gray: #94a3b8;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            --shadow-lg: 0 30px 60px rgba(0, 0, 0, 0.4);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            --gradient: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
-            --gradient-dark: linear-gradient(135deg, #7c3aed 0%, #0891b2 100%);
-            --gradient-text: linear-gradient(135deg, #a78bfa 0%, #22d3ee 100%);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
         }
-
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background-color: var(--darker);
-            color: var(--light);
-            line-height: 1.7;
+            font-family: 'Exo 2', sans-serif;
+            background-color: #050510;
+            color: #f0f0ff;
             overflow-x: hidden;
-            position: relative;
+            min-height: 100vh;
+            perspective: 1000px;
         }
-
-        body::before {
-            content: '';
+        
+        /* Cyberspace Container */
+        .cyberspace {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: 1;
             background: 
-                radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(124, 58, 237, 0.05) 0%, transparent 50%);
-            z-index: -2;
+                radial-gradient(circle at 20% 80%, #1a0033 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, #0a001a 0%, transparent 50%),
+                linear-gradient(to bottom, #050510 0%, #0a0a1a 100%);
         }
-
-        .container {
+        
+        /* Grid lines (matrix-style) */
+        .grid-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 120, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 120, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
         }
-
-        section {
-            padding: 6rem 0;
+        
+        /* Distant server racks */
+        .server-racks {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            display: flex;
+            justify-content: space-around;
+            opacity: 0.4;
+        }
+        
+        .server-rack {
+            width: 40px;
+            height: 100%;
+            background: linear-gradient(to top, #001133 0%, #003366 100%);
             position: relative;
+            box-shadow: 0 0 20px rgba(0, 100, 255, 0.3);
         }
-
-        /* Typography */
-        h1, h2, h3, h4 {
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
+        
+        .server-rack::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            background: #00aaff;
+            box-shadow: 0 0 10px #00aaff;
+            animation: serverBlink 3s infinite;
         }
-
-        h1 {
-            font-size: 3.5rem;
-            background: var(--gradient-text);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.02em;
+        
+        @keyframes serverBlink {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
         }
-
-        h2 {
-            font-size: 2.8rem;
-            color: var(--light);
+        
+        /* Vortex Container */
+        .vortex-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(10deg);
+            width: 800px;
+            height: 800px;
+            z-index: 10;
+        }
+        
+        /* Vortex Core */
+        .vortex-core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #00f7ff 0%, rgba(0, 247, 255, 0.2) 70%, transparent 100%);
+            box-shadow: 
+                0 0 100px #00f7ff,
+                0 0 200px rgba(0, 247, 255, 0.5),
+                inset 0 0 50px rgba(255, 255, 255, 0.8);
+            z-index: 15;
+            animation: pulseCore 4s infinite alternate;
+        }
+        
+        @keyframes pulseCore {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            100% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+        
+        /* Vortex Rings */
+        .vortex-rings {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+        }
+        
+        .ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d;
+        }
+        
+        .ring-1 {
+            width: 300px;
+            height: 300px;
+            transform: translate(-50%, -50%) rotateX(70deg) rotateY(20deg);
+            animation: rotateRing 40s infinite linear;
+            border-color: rgba(0, 247, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 247, 255, 0.2);
+        }
+        
+        .ring-2 {
+            width: 400px;
+            height: 400px;
+            transform: translate(-50%, -50%) rotateX(60deg) rotateY(40deg);
+            animation: rotateRing 35s infinite linear reverse;
+            border-color: rgba(255, 0, 255, 0.3);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
+        }
+        
+        .ring-3 {
+            width: 500px;
+            height: 500px;
+            transform: translate(-50%, -50%) rotateX(50deg) rotateY(60deg);
+            animation: rotateRing 50s infinite linear;
+            border-color: rgba(0, 247, 255, 0.2);
+        }
+        
+        .ring-4 {
+            width: 600px;
+            height: 600px;
+            transform: translate(-50%, -50%) rotateX(80deg) rotateY(30deg);
+            animation: rotateRing 45s infinite linear reverse;
+            border-color: rgba(255, 0, 255, 0.2);
+        }
+        
+        .ring-5 {
+            width: 700px;
+            height: 700px;
+            transform: translate(-50%, -50%) rotateX(70deg) rotateY(10deg);
+            animation: rotateRing 55s infinite linear;
+            border-color: rgba(0, 247, 255, 0.1);
+        }
+        
+        .ring-6 {
+            width: 780px;
+            height: 780px;
+            transform: translate(-50%, -50%) rotateX(60deg) rotateY(50deg);
+            animation: rotateRing 60s infinite linear reverse;
+            border-color: rgba(255, 0, 255, 0.1);
+        }
+        
+        @keyframes rotateRing {
+            0% { transform: translate(-50%, -50%) rotateX(70deg) rotateY(20deg) rotateZ(0deg); }
+            100% { transform: translate(-50%, -50%) rotateX(70deg) rotateY(20deg) rotateZ(360deg); }
+        }
+        
+        /* Data Streams */
+        .data-streams {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+        }
+        
+        .chaos-stream {
+            position: absolute;
+            top: 40%;
+            left: 10%;
+            width: 300px;
+            height: 10px;
+            background: linear-gradient(90deg, #ff3300, #ff9900, #ffff00);
+            border-radius: 5px;
+            transform: rotate(15deg);
+            filter: blur(2px);
+            opacity: 0.8;
+            animation: streamFlow 3s infinite linear;
+        }
+        
+        .chaos-stream::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            width: 100%;
+            height: 40px;
+            background: inherit;
+            filter: blur(10px);
+            opacity: 0.5;
+        }
+        
+        .chaos-particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff3300;
+            border-radius: 50%;
+            animation: floatParticle 4s infinite linear;
+        }
+        
+        .golden-stream {
+            position: absolute;
+            top: 40%;
+            right: 10%;
+            width: 300px;
+            height: 10px;
+            background: linear-gradient(90deg, #ffd700, #ffaa00, #ffd700);
+            border-radius: 5px;
+            transform: rotate(-15deg);
+            filter: blur(1px);
+            opacity: 0.9;
+            animation: streamFlow 3s infinite linear reverse;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+        }
+        
+        .golden-stream::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            width: 100%;
+            height: 40px;
+            background: inherit;
+            filter: blur(15px);
+            opacity: 0.6;
+        }
+        
+        @keyframes streamFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+        
+        @keyframes floatParticle {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-200px) translateX(100px); opacity: 0; }
+        }
+        
+        /* Target Planets */
+        .target-planets {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+        }
+        
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #444, #000);
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 0 0 5px black;
+        }
+        
+        .planet-1 {
+            top: 20%;
+            right: 15%;
+            width: 60px;
+            height: 60px;
+            animation: floatPlanet 25s infinite linear;
+        }
+        
+        .planet-2 {
+            top: 60%;
+            right: 5%;
+            width: 40px;
+            height: 40px;
+            animation: floatPlanet 30s infinite linear reverse;
+        }
+        
+        .planet-3 {
+            top: 10%;
+            right: 25%;
+            width: 50px;
+            height: 50px;
+            animation: floatPlanet 35s infinite linear;
+        }
+        
+        @keyframes floatPlanet {
+            0% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(0) rotate(180deg); }
+            75% { transform: translateY(20px) rotate(270deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+        
+        /* Control Panel */
+        .control-panel {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            width: 320px;
+            height: 180px;
+            background: rgba(0, 10, 30, 0.8);
+            border: 1px solid rgba(0, 200, 255, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 0 30px rgba(0, 150, 255, 0.3),
+                inset 0 0 30px rgba(0, 150, 255, 0.1);
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .metric {
+            background: rgba(0, 30, 60, 0.7);
+            padding: 8px;
+            border-radius: 5px;
+            border-left: 3px solid #00aaff;
+        }
+        
+        .metric-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #00ffaa;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pulsing {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        
+        /* Main Content */
+        .main-content {
+            position: relative;
+            z-index: 200;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            pointer-events: none;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 80px;
+            letter-spacing: 5px;
+            color: #00f7ff;
+            text-shadow: 
+                0 0 20px #00f7ff,
+                0 0 40px rgba(0, 247, 255, 0.5);
             position: relative;
             display: inline-block;
         }
-
-        h2::after {
-            content: '';
+        
+        .logo::after {
+            content: '.space';
+            font-family: 'Exo 2', sans-serif;
+            font-size: 20px;
             position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
+            bottom: -15px;
+            right: 0;
+            color: #aaa;
+            letter-spacing: 1px;
         }
-
-        h3 {
-            font-size: 1.8rem;
-            color: var(--light);
+        
+        .tagline {
+            text-align: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 64px;
+            letter-spacing: 3px;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
-
-        p {
-            font-size: 1.1rem;
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .lead {
-            font-size: 1.3rem;
+        
+        .subheading {
+            text-align: center;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 22px;
             font-weight: 300;
-            color: rgba(255, 255, 255, 0.8);
+            color: #aaddff;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
         }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem 2.2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid var(--glass-border);
-        }
-
-        .btn-secondary:hover {
-            background: var(--glass);
-            transform: translateY(-3px);
-            border-color: var(--primary);
-        }
-
-        .btn i {
-            margin-left: 0.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .btn:hover i {
-            transform: translateX(5px);
-        }
-
-        /* Header & Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 1.5rem 0;
-            transition: var(--transition);
-        }
-
-        header.scrolled {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .navbar {
+        
+        .features {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
         }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
+        
+        .feature {
+            width: 30%;
+            background: rgba(0, 20, 40, 0.6);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0, 150, 255, 0.3);
+            pointer-events: auto;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: var(--gradient-text);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-left: 0.5rem;
-            letter-spacing: -0.02em;
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 100, 255, 0.3);
         }
-
-        .logo-vortex {
-            position: relative;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        
+        .feature-icon {
+            font-size: 30px;
+            color: #00f7ff;
+            margin-bottom: 15px;
         }
-
-        .logo-vortex::before {
-            content: '';
+        
+        .feature-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #aaddff;
+        }
+        
+        /* Data Particles */
+        .data-particle {
             position: absolute;
-            width: 100%;
-            height: 100%;
             border-radius: 50%;
-            background: conic-gradient(var(--primary), var(--secondary), var(--primary));
-            animation: spin 3s linear infinite;
-        }
-
-        .logo-vortex::after {
-            content: 'A';
-            position: absolute;
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: white;
-            z-index: 1;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--primary-light);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 12rem 0 8rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            text-align: center;
-            margin: 0 auto;
-            position: relative;
             z-index: 2;
+            opacity: 0.7;
         }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            animation: fadeUp 1s ease-out;
-        }
-
-        .hero .lead {
-            font-size: 1.4rem;
-            margin-bottom: 3rem;
-            animation: fadeUp 1s ease-out 0.2s both;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            animation: fadeUp 1s ease-out 0.4s both;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            margin-top: 6rem;
-            animation: fadeUp 1s ease-out 0.6s both;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            background: var(--gradient-text);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: var(--gray);
-            margin-top: 0.5rem;
-        }
-
-        /* Floating Elements */
-        .floating-elements {
+        
+        /* Shooting Stars */
+        .shooting-star {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
             z-index: 1;
         }
-
+        
+        /* Floating Elements */
         .floating-element {
             position: absolute;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(139, 92, 246, 0.1);
-            backdrop-filter: blur(5px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--primary-light);
-            animation: float 6s ease-in-out infinite;
+            z-index: 5;
+            opacity: 0.7;
+            font-size: 20px;
         }
-
-        .floating-element:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
-            width: 40px;
-            height: 40px;
-        }
-
-        .floating-element:nth-child(3) {
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
-            width: 70px;
-            height: 70px;
-        }
-
-        /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
-        }
-
-        .service-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: -1;
-        }
-
-        .service-card:hover {
-            transform: translateY(-15px);
-            border-color: transparent;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .service-card:hover::before {
-            opacity: 0.1;
-        }
-
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 18px;
-            background: rgba(139, 92, 246, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            color: var(--primary);
-            transition: var(--transition);
-        }
-
-        .service-card:hover .service-icon {
-            background: var(--gradient);
-            color: white;
-            transform: scale(1.1);
-        }
-
-        .service-features {
-            list-style: none;
-            margin: 1.5rem 0;
-        }
-
-        .service-features li {
-            margin-bottom: 0.8rem;
-            color: var(--gray);
-            display: flex;
-            align-items: center;
-        }
-
-        .service-features li::before {
-            content: '✓';
-            color: var(--success);
-            font-weight: bold;
-            margin-right: 0.8rem;
-            font-size: 1.2rem;
-        }
-
-        /* Pricing Section */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .pricing-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 3rem 2.5rem;
-            transition: var(--transition);
-            position: relative;
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .pricing-card.popular {
-            border: 2px solid var(--primary);
-            transform: scale(1.05);
-            box-shadow: var(--shadow);
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gradient);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .pricing-header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .pricing-price {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: white;
-            margin: 1rem 0;
-        }
-
-        .pricing-price span {
-            font-size: 1rem;
-            color: var(--gray);
-        }
-
-        .pricing-features {
-            list-style: none;
-            flex-grow: 1;
-            margin-bottom: 2rem;
-        }
-
-        .pricing-features li {
-            margin-bottom: 1rem;
-            color: var(--gray);
-            display: flex;
-            align-items: center;
-        }
-
-        .pricing-features li i {
-            color: var(--success);
-            margin-right: 0.8rem;
-            font-size: 1.2rem;
-        }
-
-        /* Testimonials */
-        .testimonial-slider {
-            position: relative;
-            max-width: 800px;
-            margin: 4rem auto 0;
-            overflow: hidden;
-        }
-
-        .testimonial-track {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .testimonial-slide {
-            min-width: 100%;
-            padding: 2rem;
-        }
-
-        .testimonial-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .client-avatar {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            border: 3px solid var(--primary);
-            overflow: hidden;
-        }
-
-        .client-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .client-rating {
-            color: var(--warning);
-            margin: 1rem 0;
-            font-size: 1.2rem;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: var(--gradient-dark);
-            border-radius: 30px;
-            padding: 5rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            margin: 6rem auto;
-            max-width: 1000px;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-            opacity: 0.3;
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 2;
-        }
-
+        
         /* Footer */
-        footer {
-            background: rgba(10, 15, 31, 0.9);
-            padding: 5rem 0 2rem;
-            border-top: 1px solid var(--glass-border);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-column h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            color: white;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: var(--gray);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-light);
-        }
-
-        .copyright {
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--glass-border);
-            color: var(--gray);
-            font-size: 0.9rem;
+            background: rgba(0, 5, 15, 0.8);
+            z-index: 300;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 14px;
+            color: #8899aa;
+            border-top: 1px solid rgba(0, 100, 255, 0.2);
         }
-
-        /* Animations */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+        
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .vortex-container {
+                width: 600px;
+                height: 600px;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            
+            .ring-1 { width: 200px; height: 200px; }
+            .ring-2 { width: 300px; height: 300px; }
+            .ring-3 { width: 400px; height: 400px; }
+            .ring-4 { width: 500px; height: 500px; }
+            .ring-5 { width: 580px; height: 580px; }
+            
+            .tagline {
+                font-size: 48px;
+            }
+            
+            .feature {
+                width: 48%;
             }
         }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            h1 { font-size: 3rem; }
-            h2 { font-size: 2.5rem; }
-            .hero { padding: 10rem 0 6rem; }
-        }
-
+        
         @media (max-width: 768px) {
-            .container { padding: 0 1.5rem; }
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            section { padding: 4rem 0; }
-            
-            .mobile-menu-btn {
-                display: block;
+            .vortex-container {
+                width: 400px;
+                height: 400px;
             }
             
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: 0;
+            .ring-1 { width: 150px; height: 150px; }
+            .ring-2 { width: 200px; height: 200px; }
+            .ring-3 { width: 300px; height: 300px; }
+            .ring-4 { width: 380px; height: 380px; }
+            
+            .tagline {
+                font-size: 36px;
+            }
+            
+            .subheading {
+                font-size: 18px;
+            }
+            
+            .feature {
                 width: 100%;
-                background: var(--darker);
-                flex-direction: column;
-                padding: 2rem;
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: var(--transition);
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             }
             
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
+            .control-panel {
+                width: 280px;
+                height: 160px;
+                left: 50%;
+                transform: translateX(-50%);
             }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .hero-stats {
-                flex-direction: column;
-                gap: 2rem;
-            }
-            
-            .services-grid,
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .pricing-card.popular {
-                transform: none;
-            }
-            
-            .cta-section {
-                padding: 3rem 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 { font-size: 2rem; }
-            .hero { padding: 8rem 0 4rem; }
-            .btn { width: 100%; }
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--darker);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--gradient);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--gradient-dark);
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">
-                    <div class="logo-vortex"></div>
-                    <span class="logo-text">AdVortex</span>
-                </a>
-                
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-                
-                <div class="nav-links" id="navLinks">
-                    <a href="#home" class="nav-link">Home</a>
-                    <a href="#services" class="nav-link">Services</a>
-                    <a href="#pricing" class="nav-link">Pricing</a>
-                    <a href="#testimonials" class="nav-link">Testimonials</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                    <a href="#contact" class="btn btn-primary">Get Started</a>
-                </div>
-            </nav>
+    <!-- Cyberspace Background -->
+    <div class="cyberspace">
+        <div class="grid-lines"></div>
+        <div class="server-racks">
+            <div class="server-rack"></div>
+            <div class="server-rack"></div>
+            <div class="server-rack"></div>
+            <div class="server-rack"></div>
+            <div class="server-rack"></div>
+            <div class="server-rack"></div>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Where Digital Dreams Become Reality</h1>
-                <p class="lead">We don't just create websites. We build digital experiences that captivate, convert, and create lasting impressions. Your vision, amplified by our expertise.</p>
-                
-                <div class="hero-buttons">
-                    <a href="#pricing" class="btn btn-primary">View Our Plans <i class="fas fa-arrow-right"></i></a>
-                    <a href="#contact" class="btn btn-secondary">Book a Consultation</a>
-                </div>
-                
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">98%</div>
-                        <div class="stat-label">Client Satisfaction</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">250+</div>
-                        <div class="stat-label">Projects Delivered</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Support Available</div>
-                    </div>
-                </div>
+        
+        <!-- Vortex -->
+        <div class="vortex-container">
+            <div class="vortex-rings">
+                <div class="ring ring-1"></div>
+                <div class="ring ring-2"></div>
+                <div class="ring ring-3"></div>
+                <div class="ring ring-4"></div>
+                <div class="ring ring-5"></div>
+                <div class="ring ring-6"></div>
+            </div>
+            <div class="vortex-core"></div>
+            
+            <!-- Data Streams -->
+            <div class="data-streams">
+                <div class="chaos-stream"></div>
+                <div class="golden-stream"></div>
             </div>
             
-            <div class="floating-elements">
-                <div class="floating-element"><i class="fas fa-code"></i></div>
-                <div class="floating-element"><i class="fas fa-chart-line"></i></div>
-                <div class="floating-element"><i class="fas fa-palette"></i></div>
+            <!-- Target Planets -->
+            <div class="target-planets">
+                <div class="planet planet-1">TARGET</div>
+                <div class="planet planet-2">GOAL</div>
+                <div class="planet planet-3">CONVERT</div>
             </div>
         </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services">
-        <div class="container">
-            <h2>Our Premium Services</h2>
-            <p class="lead">We provide end-to-end digital solutions designed to propel your business forward in the digital landscape.</p>
-            
-            <div class="services-grid">
-                <!-- Service 1 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3>Website Development</h3>
-                    <p>From sleek landing pages to complex web applications, we craft digital experiences that engage and convert.</p>
-                    <ul class="service-features">
-                        <li>Responsive design that works on all devices</li>
-                        <li>Lightning-fast performance optimization</li>
-                        <li>SEO-friendly architecture</li>
-                        <li>Ongoing maintenance & support</li>
-                    </ul>
-                </div>
-                
-                <!-- Service 2 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3>E-commerce Solutions</h3>
-                    <p>Turn visitors into customers with powerful online stores designed for maximum conversion and seamless shopping experiences.</p>
-                    <ul class="service-features">
-                        <li>Secure payment gateway integration</li>
-                        <li>Inventory & order management</li>
-                        <li>Mobile-optimized shopping experience</li>
-                        <li>Analytics & conversion tracking</li>
-                    </ul>
-                </div>
-                
-                <!-- Service 3 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Mobile Applications</h3>
-                    <p>Reach your audience wherever they are with beautifully designed, high-performance mobile applications.</p>
-                    <ul class="service-features">
-                        <li>iOS & Android development</li>
-                        <li>Intuitive user interface design</li>
-                        <li>Push notification integration</li>
-                        <li>App store submission assistance</li>
-                    </ul>
-                </div>
-                
-                <!-- Service 4 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <h3>UI/UX Design</h3>
-                    <p>We don't just make things look pretty—we create intuitive experiences that users love and remember.</p>
-                    <ul class="service-features">
-                        <li>User research & persona development</li>
-                        <li>Wireframing & prototyping</li>
-                        <li>Usability testing</li>
-                        <li>Design system creation</li>
-                    </ul>
-                </div>
-                
-                <!-- Service 5 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3>SEO Optimization</h3>
-                    <p>Get found by the right people at the right time with our comprehensive search engine optimization strategies.</p>
-                    <ul class="service-features">
-                        <li>Keyword research & strategy</li>
-                        <li>On-page & technical SEO</li>
-                        <li>Content optimization</li>
-                        <li>Monthly performance reports</li>
-                    </ul>
-                </div>
-                
-                <!-- Service 6 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-bullhorn"></i>
-                    </div>
-                    <h3>Digital Marketing</h3>
-                    <p>Amplify your brand's reach with targeted campaigns that drive results and deliver measurable ROI.</p>
-                    <ul class="service-features">
-                        <li>Social media marketing</li>
-                        <li>Content strategy & creation</li>
-                        <li>PPC advertising management</li>
-                        <li>Campaign analytics & optimization</li>
-                    </ul>
-                </div>
+        
+        <!-- Floating UI Elements -->
+        <div class="floating-element" style="top: 20%; left: 5%;">404</div>
+        <div class="floating-element" style="top: 70%; left: 8%;">❌</div>
+        <div class="floating-element" style="top: 30%; right: 8%;">💰</div>
+        <div class="floating-element" style="top: 80%; right: 5%;">✅</div>
+    </div>
+    
+    <!-- Control Panel -->
+    <div class="control-panel">
+        <div style="color: #00f7ff; font-size: 20px; margin-bottom: 5px;">ADVORTEX CONTROL</div>
+        <div style="color: #aaddff; font-size: 12px; margin-bottom: 15px;">Real-time Advertising Dashboard</div>
+        
+        <div class="dashboard">
+            <div class="metric">
+                <div>Active Campaigns</div>
+                <div class="metric-value" id="campaigns">1,247</div>
+            </div>
+            <div class="metric">
+                <div>Conversion Rate</div>
+                <div class="metric-value pulsing" id="conversion">8.9%</div>
+            </div>
+            <div class="metric">
+                <div>Audience Reach</div>
+                <div class="metric-value" id="reach">2.4B</div>
+            </div>
+            <div class="metric">
+                <div>ROI Increase</div>
+                <div class="metric-value" id="roi">+247%</div>
             </div>
         </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing">
-        <div class="container">
-            <h2>Transparent Pricing</h2>
-            <p class="lead">Choose the perfect plan for your needs. No hidden fees, no surprises—just exceptional value.</p>
-            
-            <div class="pricing-grid">
-                <!-- Plan 1 -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Starter</h3>
-                        <p>Perfect for small businesses just beginning their digital journey</p>
-                        <div class="pricing-price">$499</div>
-                        <p>One-time project fee</p>
-                    </div>
-                    
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Custom-designed landing page</li>
-                        <li><i class="fas fa-check"></i> Mobile-responsive design</li>
-                        <li><i class="fas fa-check"></i> Basic SEO setup</li>
-                        <li><i class="fas fa-check"></i> Contact form integration</li>
-                        <li><i class="fas fa-check"></i> 1 revision round</li>
-                        <li><i class="fas fa-check"></i> 5-day delivery</li>
-                    </ul>
-                    
-                    <a href="#contact" class="btn btn-secondary">Get Started</a>
-                </div>
-                
-                <!-- Plan 2 (Popular) -->
-                <div class="pricing-card popular">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="pricing-header">
-                        <h3>Business</h3>
-                        <p>Ideal for growing companies ready to scale</p>
-                        <div class="pricing-price">$1,299</div>
-                        <p>One-time project fee</p>
-                    </div>
-                    
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Everything in Starter, plus:</li>
-                        <li><i class="fas fa-check"></i> Up to 10-page website</li>
-                        <li><i class="fas fa-check"></i> CMS integration (WordPress)</li>
-                        <li><i class="fas fa-check"></i> Advanced SEO optimization</li>
-                        <li><i class="fas fa-check"></i> Google Analytics setup</li>
-                        <li><i class="fas fa-check"></i> 3 revision rounds</li>
-                        <li><i class="fas fa-check"></i> 10-day delivery</li>
-                        <li><i class="fas fa-check"></i> 1 month of support</li>
-                    </ul>
-                    
-                    <a href="#contact" class="btn btn-primary">Choose Plan</a>
-                </div>
-                
-                <!-- Plan 3 -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Enterprise</h3>
-                        <p>Complete digital solution for established businesses</p>
-                        <div class="pricing-price">$2,499</div>
-                        <p>One-time project fee</p>
-                    </div>
-                    
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Everything in Business, plus:</li>
-                        <li><i class="fas fa-check"></i> Full e-commerce functionality</li>
-                        <li><i class="fas fa-check"></i> Custom admin dashboard</li>
-                        <li><i class="fas fa-check"></i> Priority support</li>
-                        <li><i class="fas fa-check"></i> Performance optimization</li>
-                        <li><i class="fas fa-check"></i> 5 revision rounds</li>
-                        <li><i class="fas fa-check"></i> 15-day delivery</li>
-                        <li><i class="fas fa-check"></i> 3 months of support</li>
-                    </ul>
-                    
-                    <a href="#contact" class="btn btn-secondary">Get Started</a>
-                </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="logo-container">
+            <div class="logo">ADVORTEX</div>
+        </div>
+        
+        <h1 class="tagline">TRANSFORM TRAFFIC INTO TRIUMPH</h1>
+        <h2 class="subheading">AI-Powered Advertising Precision</h2>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                <h3 class="feature-title">SENTIENT DATA VORTEX</h3>
+                <p>Our colossal AI engine processes chaotic internet traffic in real-time, transforming it into laser-targeted conversion streams.</p>
             </div>
             
-            <p style="text-align: center; margin-top: 3rem; color: var(--gray);">
-                Need a custom solution? <a href="#contact" style="color: var(--primary-light); text-decoration: none;">Contact us</a> for a personalized quote.
-            </p>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section id="testimonials">
-        <div class="container">
-            <h2>What Our Clients Say</h2>
-            <p class="lead">Don't just take our word for it—here's what businesses like yours have to say about working with us.</p>
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
+                <h3 class="feature-title">PRECISION TARGETING</h3>
+                <p>Advanced algorithms analyze and segment data with unprecedented accuracy, ensuring your message reaches the perfect audience.</p>
+            </div>
             
-            <div class="testimonial-slider">
-                <div class="testimonial-track" id="testimonialTrack">
-                    <!-- Testimonial 1 -->
-                    <div class="testimonial-slide">
-                        <div class="testimonial-card">
-                            <div class="client-avatar">
-                                <img src="https://i.pravatar.cc/150?img=1" alt="Client">
-                            </div>
-                            <p>"AdVortex transformed our online presence completely. Our website traffic increased by 300% in just two months!"</p>
-                            <div class="client-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <h4>Sarah Johnson</h4>
-                            <p style="color: var(--gray); font-size: 0.9rem;">CEO, TechSolutions Inc.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Testimonial 2 -->
-                    <div class="testimonial-slide">
-                        <div class="testimonial-card">
-                            <div class="client-avatar">
-                                <img src="https://i.pravatar.cc/150?img=2" alt="Client">
-                            </div>
-                            <p>"The team's attention to detail is phenomenal. They understood our vision better than we did and delivered beyond expectations."</p>
-                            <div class="client-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <h4>Michael Chen</h4>
-                            <p style="color: var(--gray); font-size: 0.9rem;">Founder, Bloom & Grow</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Testimonial 3 -->
-                    <div class="testimonial-slide">
-                        <div class="testimonial-card">
-                            <div class="client-avatar">
-                                <img src="https://i.pravatar.cc/150?img=3" alt="Client">
-                            </div>
-                            <p>"Outstanding service from start to finish. Our new e-commerce platform has already doubled our online sales."</p>
-                            <div class="client-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <h4>Emily Rodriguez</h4>
-                            <p style="color: var(--gray); font-size: 0.9rem;">Marketing Director, UrbanStyle</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                <h3 class="feature-title">REAL-TIME OPTIMIZATION</h3>
+                <p>Continuous learning and adaptation maximize ROI while minimizing CPA across all advertising channels and platforms.</p>
             </div>
         </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section id="contact">
-        <div class="container">
-            <div class="cta-section">
-                <div class="cta-content">
-                    <h2>Ready to Transform Your Digital Presence?</h2>
-                    <p class="lead" style="color: rgba(255, 255, 255, 0.9); margin-bottom: 2.5rem;">Let's create something extraordinary together. Schedule your free consultation today.</p>
-                    
-                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                        <a href="tel:+12345678900" class="btn btn-primary" style="background: white; color: var(--primary-dark);">
-                            <i class="fas fa-phone-alt"></i> Call Now: (123) 456-7890
-                        </a>
-                        <a href="mailto:hello@advortex.example.com" class="btn btn-secondary" style="border-color: rgba(255, 255, 255, 0.3);">
-                            <i class="fas fa-envelope"></i> Email Us
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    </div>
+    
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h4>AdVortex</h4>
-                    <p style="color: var(--gray); margin-bottom: 1.5rem;">Where digital dreams become reality. We craft exceptional digital experiences that drive results.</p>
-                    <div style="display: flex; gap: 1rem;">
-                        <a href="#" style="color: var(--gray); font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
-                        <a href="#" style="color: var(--gray); font-size: 1.2rem;"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" style="color: var(--gray); font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
-                        <a href="#" style="color: var(--gray); font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h4>Services</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Website Development</a></li>
-                        <li><a href="#">E-commerce Solutions</a></li>
-                        <li><a href="#">Mobile Applications</a></li>
-                        <li><a href="#">UI/UX Design</a></li>
-                        <li><a href="#">SEO Optimization</a></li>
-                        <li><a href="#">Digital Marketing</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h4>Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Our Process</a></li>
-                        <li><a href="#">Case Studies</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h4>Contact Info</h4>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt" style="margin-right: 0.5rem;"></i> 123 Digital Avenue, Tech City</li>
-                        <li><i class="fas fa-phone" style="margin-right: 0.5rem;"></i> (123) 456-7890</li>
-                        <li><i class="fas fa-envelope" style="margin-right: 0.5rem;"></i> hello@advortex.example.com</li>
-                        <li><i class="fas fa-clock" style="margin-right: 0.5rem;"></i> Mon-Fri: 9AM-6PM</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 AdVortex. All rights reserved. | <a href="#" style="color: var(--gray);">Privacy Policy</a> | <a href="#" style="color: var(--gray);">Terms of Service</a></p>
-            </div>
-        </div>
-    </footer>
-
+    <div class="footer">
+        ADVORTEX CINEMATIC MASTERPIECE VISUAL | HYPER-DETAILED PHOTOREALISTIC RENDER | EPIC SCALE CYBERSPACE ENVIRONMENT
+    </div>
+    
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-        
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-        
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+        // Create data particles
+        function createDataParticles() {
+            const colors = ['#ff3300', '#ff9900', '#ffff00', '#00f7ff', '#ff00ff', '#ffd700'];
+            const cyberspace = document.querySelector('.cyberspace');
+            
+            for (let i = 0; i < 150; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'data-particle';
+                
+                // Random properties
+                const size = Math.random() * 6 + 2;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                
+                // Apply styles
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.backgroundColor = color;
+                particle.style.left = `${left}%`;
+                particle.style.top = `${top}%`;
+                particle.style.animation = `floatParticle ${duration}s infinite linear ${delay}s`;
+                
+                cyberspace.appendChild(particle);
             }
-        });
-        
-        // Testimonial slider
-        let currentSlide = 0;
-        const track = document.getElementById('testimonialTrack');
-        const slides = document.querySelectorAll('.testimonial-slide');
-        
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            updateSlider();
         }
         
-        function updateSlider() {
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        // Create shooting stars
+        function createShootingStars() {
+            const cyberspace = document.querySelector('.cyberspace');
+            
+            for (let i = 0; i < 8; i++) {
+                const star = document.createElement('div');
+                star.className = 'shooting-star';
+                
+                // Random properties
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const duration = Math.random() * 3 + 2;
+                const delay = Math.random() * 10;
+                
+                // Apply styles
+                star.style.left = `${left}%`;
+                star.style.top = `${top}%`;
+                star.style.animation = `shootStar ${duration}s infinite linear ${delay}s`;
+                
+                // Add animation keyframes dynamically
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes shootStar {
+                        0% { transform: translate(0, 0); opacity: 0; }
+                        10% { opacity: 1; }
+                        100% { transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                cyberspace.appendChild(star);
+            }
         }
         
-        // Auto slide every 5 seconds
-        setInterval(nextSlide, 5000);
-        
-        // Floating elements animation enhancement
-        document.querySelectorAll('.floating-element').forEach((element, index) => {
-            element.style.animationDelay = `${index * 2}s`;
-        });
-        
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-        
-        // Observe elements for animation
-        document.querySelectorAll('.service-card, .pricing-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
-        
-        // Initialize
-        window.addEventListener('load', () => {
-            // Trigger initial animations
-            setTimeout(() => {
-                document.querySelectorAll('.service-card, .pricing-card').forEach(card => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                });
-            }, 300);
+        // Animate metrics
+        function animateMetrics() {
+            const conversionElem = document.getElementById('conversion');
+            const reachElem = document.getElementById('reach');
+            const campaignsElem = document.getElementById('campaigns');
+            const roiElem = document.getElementById('roi');
             
-            // Add subtle hover effect to logo
-            const logoVortex = document.querySelector('.logo-vortex');
-            logoVortex.addEventListener('mouseenter', () => {
-                logoVortex.style.animation = 'spin 1s linear infinite, pulse 2s ease-in-out infinite';
-            });
+            let conversion = 8.9;
+            let reach = 2400000000;
+            let campaigns = 1247;
+            let roi = 247;
             
-            logoVortex.addEventListener('mouseleave', () => {
-                logoVortex.style.animation = 'spin 3s linear infinite';
+            // Animate conversion rate
+            setInterval(() => {
+                conversion += (Math.random() * 0.2 - 0.1);
+                conversion = Math.max(8.5, Math.min(9.5, conversion));
+                conversionElem.textContent = conversion.toFixed(1) + '%';
+            }, 2000);
+            
+            // Animate reach counter
+            setInterval(() => {
+                reach += Math.floor(Math.random() * 10000);
+                if (reach > 2500000000) reach = 2400000000;
+                reachElem.textContent = (reach / 1000000000).toFixed(1) + 'B';
+            }, 1500);
+            
+            // Animate campaigns
+            setInterval(() => {
+                campaigns += Math.floor(Math.random() * 5 - 2);
+                campaigns = Math.max(1240, Math.min(1260, campaigns));
+                campaignsElem.textContent = campaigns.toLocaleString();
+            }, 3000);
+            
+            // Animate ROI
+            setInterval(() => {
+                roi += Math.floor(Math.random() * 10 - 5);
+                roi = Math.max(240, Math.min(260, roi));
+                roiElem.textContent = '+' + roi + '%';
+            }, 2500);
+        }
+        
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            createDataParticles();
+            createShootingStars();
+            animateMetrics();
+            
+            // Add some interactive effects
+            const vortex = document.querySelector('.vortex-container');
+            document.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth - 0.5) * 10;
+                const y = (e.clientY / window.innerHeight - 0.5) * 10;
+                vortex.style.transform = `translate(-50%, -50%) rotateX(${10 + y}deg) rotateY(${x}deg)`;
             });
+        });
+        
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const cyberspace = document.querySelector('.cyberspace');
+            const vortex = document.querySelector('.vortex-container');
+            
+            cyberspace.style.transform = `translateY(${scrolled * 0.5}px)`;
+            vortex.style.transform = `translate(-50%, calc(-50% + ${scrolled * 0.2}px))`;
         });
     </script>
 </body>
