@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevVortex - Development & Marketing Services</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <style>
+        /* GitHub-inspired CSS */
+        :root {
+            --github-dark: #0d1117;
+            --github-dark-secondary: #161b22;
+            --github-border: #30363d;
+            --github-text: #c9d1d9;
+            --github-text-secondary: #8b949e;
+            --github-accent: #58a6ff;
+            --github-green: #238636;
+            --github-green-hover: #2ea043;
+            --github-purple: #8957e5;
+            --github-blue: #1f6feb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: var(--github-dark);
+            color: var(--github-text);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background-color: var(--github-dark-secondary);
+            border-bottom: 1px solid var(--github-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            background-color: var(--github-purple);
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: var(--github-text);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        
+        .nav-link:hover {
+            color: var(--github-accent);
+        }
+        
+        .cta-button {
+            background-color: var(--github-green);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--github-green-hover);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--github-border);
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #58a6ff, #8957e5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: var(--github-text-secondary);
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Services Section */
+        .section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--github-border);
+        }
+        
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 48px;
+            text-align: center;
+            color: white;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        
+        .service-card {
+            background-color: var(--github-dark-secondary);
+            border: 1px solid var(--github-border);
+            border-radius: 6px;
+            padding: 24px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--github-blue);
+        }
+        
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(88, 166, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 24px;
+        }
+        
+        .service-title {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: white;
+        }
+        
+        .service-description {
+            color: var(--github-text-secondary);
+            margin-bottom: 16px;
+        }
+        
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        
+        .pricing-card {
+            background-color: var(--github-dark-secondary);
+            border: 1px solid var(--github-border);
+            border-radius: 6px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--github-blue);
+            position: relative;
+            transform: scale(1.05);
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--github-blue);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .pricing-header {
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .pricing-name {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: white;
+        }
+        
+        .pricing-description {
+            color: var(--github-text-secondary);
+            font-size: 14px;
+        }
+        
+        .pricing-price {
+            font-size: 48px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+        
+        .pricing-period {
+            color: var(--github-text-secondary);
+            margin-bottom: 32px;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+        }
+        
+        .pricing-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--github-green);
+            font-weight: bold;
+        }
+        
+        .pricing-button {
+            margin-top: auto;
+            width: 100%;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 48px 0;
+            text-align: center;
+            color: var(--github-text-secondary);
+            font-size: 14px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .footer-link {
+            color: var(--github-text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-link:hover {
+            color: var(--github-accent);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .services-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">
+                    <div class="logo-icon">DV</div>
+                    DevVortex
+                </a>
+                
+                <div class="nav-links">
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#pricing" class="nav-link">Pricing</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                
+                <a href="#contact" class="cta-button">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Powerful Development & Marketing Solutions</h1>
+            <p>We provide professional web development, design, and digital marketing services to help your business grow in the digital world. Fast, reliable, and high-quality solutions.</p>
+            <a href="#pricing" class="cta-button" style="padding: 12px 32px; font-size: 16px;">View Pricing Plans</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3 class="service-title">Website Development</h3>
+                    <p class="service-description">Custom website development from simple landing pages to complex web applications. We use modern technologies and frameworks to ensure high performance and scalability.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-icon">🛒</div>
+                    <h3 class="service-title">E-commerce Solutions</h3>
+                    <p class="service-description">Development of online stores with integrated payment systems, product catalogs, shopping carts, and administrative panels for easy management.</p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3 class="service-title">Mobile Applications</h3>
+                    <p class="service-description">Development of cross-platform and native mobile applications for iOS and Android with intuitive interfaces and optimal performance.</p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3 class="service-title">UI/UX Design</h3>
+                    <p class="service-description">Creating user-friendly and aesthetically pleasing interfaces that enhance user experience and increase conversion rates.</p>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3 class="service-title">SEO Optimization</h3>
+                    <p class="service-description">Comprehensive website optimization for search engines to improve visibility and attract targeted traffic.</p>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card">
+                    <div class="service-icon">📈</div>
+                    <h3 class="service-title">Digital Marketing</h3>
+                    <p class="service-description">Strategic marketing campaigns including SMM, content marketing, and advertising to promote your brand and attract customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section" style="background-color: rgba(22, 27, 34, 0.5);">
+        <div class="container">
+            <h2 class="section-title">Pricing Plans</h2>
+            
+            <div class="pricing-grid">
+                <!-- Plan 1 -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Starter</h3>
+                        <p class="pricing-description">Perfect for small businesses and startups</p>
+                        <div class="pricing-price">$499</div>
+                        <div class="pricing-period">one-time payment</div>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li>Responsive landing page</li>
+                        <li>Up to 5 sections</li>
+                        <li>Contact form integration</li>
+                        <li>Basic SEO setup</li>
+                        <li>1 revision round</li>
+                        <li>Delivery within 5 days</li>
+                    </ul>
+                    
+                    <a href="#contact" class="cta-button pricing-button">Choose Plan</a>
+                </div>
+                
+                <!-- Plan 2 (Featured) -->
+                <div class="pricing-card featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Business</h3>
+                        <p class="pricing-description">Ideal for growing companies</p>
+                        <div class="pricing-price">$1,299</div>
+                        <div class="pricing-period">one-time payment</div>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li>Multi-page website (up to 10 pages)</li>
+                        <li>Custom design</li>
+                        <li>CMS integration</li>
+                        <li>Advanced SEO optimization</li>
+                        <li>3 revision rounds</li>
+                        <li>Google Analytics setup</li>
+                        <li>Delivery within 10 days</li>
+                        <li>1 month of support</li>
+                    </ul>
+                    
+                    <a href="#contact" class="cta-button pricing-button">Choose Plan</a>
+                </div>
+                
+                <!-- Plan 3 -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">E-commerce</h3>
+                        <p class="pricing-description">Complete online store solution</p>
+                        <div class="pricing-price">$2,499</div>
+                        <div class="pricing-period">one-time payment</div>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li>Full-featured online store</li>
+                        <li>Product catalog (up to 100 items)</li>
+                        <li>Payment system integration</li>
+                        <li>Admin panel</li>
+                        <li>Advanced security features</li>
+                        <li>5 revision rounds</li>
+                        <li>Delivery within 15 days</li>
+                        <li>3 months of support</li>
+                    </ul>
+                    
+                    <a href="#contact" class="cta-button pricing-button">Choose Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About DevVortex</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="font-size: 18px; margin-bottom: 24px; text-align: center;">
+                    We are a team of professional developers and marketers with over 5 years of experience in creating digital solutions. 
+                    Our mission is to help businesses of all sizes succeed in the digital space by providing high-quality, reliable services.
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: center; margin-top: 48px;">
+                    <div>
+                        <div style="font-size: 40px; font-weight: bold; color: var(--github-blue); margin-bottom: 8px;">50+</div>
+                        <div style="color: var(--github-text-secondary);">Projects Completed</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 40px; font-weight: bold; color: var(--github-blue); margin-bottom: 8px;">30+</div>
+                        <div style="color: var(--github-text-secondary);">Satisfied Clients</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 40px; font-weight: bold; color: var(--github-blue); margin-bottom: 8px;">5+</div>
+                        <div style="color: var(--github-text-secondary);">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section" style="border-bottom: none;">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 18px; margin-bottom: 32px;">
+                    Ready to start your project? Contact us today to discuss your requirements and get a personalized quote.
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 16px; max-width: 400px; margin: 0 auto;">
+                    <a href="mailto:contact@devvortex.example.com" class="cta-button" style="text-align: center;">contact@devvortex.example.com</a>
+                    <a href="tel:+12345678900" class="cta-button" style="text-align: center; background-color: var(--github-dark-secondary); border: 1px solid var(--github-border);">+1 (234) 567-8900</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Cookie Policy</a>
+            </div>
+            <div>© 2023 DevVortex. All rights reserved.</div>
+            <div style="margin-top: 8px; font-size: 12px;">GitHub-inspired design</div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add animation to pricing cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe pricing cards for animation
+        document.querySelectorAll('.pricing-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s, transform 0.5s';
+            observer.observe(card);
+        });
+        
+        // Observe service cards for animation
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s, transform 0.5s';
+            observer.observe(card);
+        });
+        
+        // Initialize cards as visible on page load (for users who don't scroll)
+        setTimeout(() => {
+            document.querySelectorAll('.service-card, .pricing-card').forEach(card => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            });
+        }, 300);
+    </script>
+</body>
+</html>
