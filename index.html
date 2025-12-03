@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADVORTEX: Transform Traffic Into Triumph</title>
+    <title>ADVORTEX: AI-Powered Advertising Precision Platform</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;500;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             margin: 0;
@@ -26,7 +27,7 @@
             perspective: 1000px;
         }
         
-        /* Cyberspace Container */
+        /* Cyberspace Container - УЛУЧШЕНО */
         .cyberspace {
             position: fixed;
             top: 0;
@@ -38,23 +39,30 @@
                 radial-gradient(circle at 20% 80%, #1a0033 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, #0a001a 0%, transparent 50%),
                 linear-gradient(to bottom, #050510 0%, #0a0a1a 100%);
+            overflow: hidden;
         }
         
-        /* Grid lines (matrix-style) */
+        /* Grid lines (matrix-style) - ИСПРАВЛЕНО */
         .grid-lines {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 200%;
+            height: 200%;
             background-image: 
                 linear-gradient(rgba(0, 120, 255, 0.1) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 120, 255, 0.1) 1px, transparent 1px);
             background-size: 50px 50px;
             opacity: 0.3;
+            animation: moveGrid 40s linear infinite;
         }
         
-        /* Distant server racks */
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-50px, -50px); }
+        }
+        
+        /* Distant server racks - УЛУЧШЕНО */
         .server-racks {
             position: absolute;
             bottom: 0;
@@ -67,21 +75,23 @@
         }
         
         .server-rack {
-            width: 40px;
+            width: 60px;
             height: 100%;
             background: linear-gradient(to top, #001133 0%, #003366 100%);
             position: relative;
-            box-shadow: 0 0 20px rgba(0, 100, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 100, 255, 0.4);
+            border-radius: 3px;
         }
         
         .server-rack::before {
             content: '';
             position: absolute;
             width: 100%;
-            height: 10px;
-            background: #00aaff;
-            box-shadow: 0 0 10px #00aaff;
+            height: 8px;
+            background: linear-gradient(90deg, #00aaff, #0088ff);
+            box-shadow: 0 0 15px #00aaff;
             animation: serverBlink 3s infinite;
+            border-radius: 2px;
         }
         
         @keyframes serverBlink {
@@ -89,41 +99,74 @@
             50% { opacity: 1; }
         }
         
-        /* Vortex Container */
+        /* Vortex Container - ИСПРАВЛЕНО */
         .vortex-container {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) rotateX(10deg);
-            width: 800px;
-            height: 800px;
+            width: 1000px;
+            height: 1000px;
             z-index: 10;
         }
         
-        /* Vortex Core */
+        /* Vortex Core - УЛУЧШЕНО */
         .vortex-core {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 200px;
-            height: 200px;
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
-            background: radial-gradient(circle, #00f7ff 0%, rgba(0, 247, 255, 0.2) 70%, transparent 100%);
+            background: 
+                radial-gradient(circle, 
+                    rgba(0, 247, 255, 0.9) 0%, 
+                    rgba(0, 247, 255, 0.3) 40%, 
+                    transparent 70%),
+                conic-gradient(
+                    from 0deg,
+                    rgba(255, 0, 255, 0.8),
+                    rgba(0, 247, 255, 0.8),
+                    rgba(255, 0, 255, 0.8)
+                );
             box-shadow: 
-                0 0 100px #00f7ff,
-                0 0 200px rgba(0, 247, 255, 0.5),
-                inset 0 0 50px rgba(255, 255, 255, 0.8);
+                0 0 150px #00f7ff,
+                0 0 300px rgba(0, 247, 255, 0.5),
+                inset 0 0 80px rgba(255, 255, 255, 0.9);
             z-index: 15;
             animation: pulseCore 4s infinite alternate;
+            filter: blur(0.5px);
+        }
+        
+        .core-fractal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: 
+                repeating-conic-gradient(
+                    from 0deg,
+                    transparent 0deg 15deg,
+                    rgba(255, 255, 255, 0.1) 15deg 30deg
+                );
+            border-radius: 50%;
+            animation: rotateFractal 20s linear infinite;
         }
         
         @keyframes pulseCore {
-            0% { transform: translate(-50%, -50%) scale(1); }
-            100% { transform: translate(-50%, -50%) scale(1.1); }
+            0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 150px #00f7ff; }
+            100% { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 200px #00f7ff; }
         }
         
-        /* Vortex Rings */
+        @keyframes rotateFractal {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        /* Vortex Rings - ИСПРАВЛЕНО */
         .vortex-rings {
             position: absolute;
             top: 50%;
@@ -138,58 +181,76 @@
             top: 50%;
             left: 50%;
             border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid;
             transform-style: preserve-3d;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .ring::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: #00f7ff;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 15px #00f7ff;
         }
         
         .ring-1 {
-            width: 300px;
-            height: 300px;
+            width: 350px;
+            height: 350px;
             transform: translate(-50%, -50%) rotateX(70deg) rotateY(20deg);
             animation: rotateRing 40s infinite linear;
+            border-color: rgba(0, 247, 255, 0.4);
+            box-shadow: 0 0 40px rgba(0, 247, 255, 0.3);
+        }
+        
+        .ring-2 {
+            width: 480px;
+            height: 480px;
+            transform: translate(-50%, -50%) rotateX(60deg) rotateY(40deg);
+            animation: rotateRing 35s infinite linear reverse;
+            border-color: rgba(255, 0, 255, 0.4);
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.3);
+        }
+        
+        .ring-3 {
+            width: 610px;
+            height: 610px;
+            transform: translate(-50%, -50%) rotateX(50deg) rotateY(60deg);
+            animation: rotateRing 50s infinite linear;
             border-color: rgba(0, 247, 255, 0.3);
             box-shadow: 0 0 30px rgba(0, 247, 255, 0.2);
         }
         
-        .ring-2 {
-            width: 400px;
-            height: 400px;
-            transform: translate(-50%, -50%) rotateX(60deg) rotateY(40deg);
-            animation: rotateRing 35s infinite linear reverse;
+        .ring-4 {
+            width: 740px;
+            height: 740px;
+            transform: translate(-50%, -50%) rotateX(80deg) rotateY(30deg);
+            animation: rotateRing 45s infinite linear reverse;
             border-color: rgba(255, 0, 255, 0.3);
             box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
         }
         
-        .ring-3 {
-            width: 500px;
-            height: 500px;
-            transform: translate(-50%, -50%) rotateX(50deg) rotateY(60deg);
-            animation: rotateRing 50s infinite linear;
-            border-color: rgba(0, 247, 255, 0.2);
-        }
-        
-        .ring-4 {
-            width: 600px;
-            height: 600px;
-            transform: translate(-50%, -50%) rotateX(80deg) rotateY(30deg);
-            animation: rotateRing 45s infinite linear reverse;
-            border-color: rgba(255, 0, 255, 0.2);
-        }
-        
         .ring-5 {
-            width: 700px;
-            height: 700px;
+            width: 870px;
+            height: 870px;
             transform: translate(-50%, -50%) rotateX(70deg) rotateY(10deg);
             animation: rotateRing 55s infinite linear;
-            border-color: rgba(0, 247, 255, 0.1);
+            border-color: rgba(0, 247, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.1);
         }
         
         .ring-6 {
-            width: 780px;
-            height: 780px;
+            width: 980px;
+            height: 980px;
             transform: translate(-50%, -50%) rotateX(60deg) rotateY(50deg);
             animation: rotateRing 60s infinite linear reverse;
-            border-color: rgba(255, 0, 255, 0.1);
+            border-color: rgba(255, 0, 255, 0.2);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.1);
         }
         
         @keyframes rotateRing {
@@ -197,7 +258,7 @@
             100% { transform: translate(-50%, -50%) rotateX(70deg) rotateY(20deg) rotateZ(360deg); }
         }
         
-        /* Data Streams */
+        /* Data Streams - УЛУЧШЕНО */
         .data-streams {
             position: absolute;
             top: 0;
@@ -207,79 +268,89 @@
             z-index: 5;
         }
         
-        .chaos-stream {
+        .chaos-stream-container, .golden-stream-container {
             position: absolute;
             top: 40%;
-            left: 10%;
-            width: 300px;
-            height: 10px;
-            background: linear-gradient(90deg, #ff3300, #ff9900, #ffff00);
-            border-radius: 5px;
+            width: 400px;
+            height: 200px;
+            overflow: visible;
+        }
+        
+        .chaos-stream-container {
+            left: -50px;
             transform: rotate(15deg);
-            filter: blur(2px);
-            opacity: 0.8;
-            animation: streamFlow 3s infinite linear;
         }
         
-        .chaos-stream::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            width: 100%;
-            height: 40px;
-            background: inherit;
-            filter: blur(10px);
-            opacity: 0.5;
-        }
-        
-        .chaos-particle {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #ff3300;
-            border-radius: 50%;
-            animation: floatParticle 4s infinite linear;
-        }
-        
-        .golden-stream {
-            position: absolute;
-            top: 40%;
-            right: 10%;
-            width: 300px;
-            height: 10px;
-            background: linear-gradient(90deg, #ffd700, #ffaa00, #ffd700);
-            border-radius: 5px;
+        .golden-stream-container {
+            right: -50px;
             transform: rotate(-15deg);
-            filter: blur(1px);
-            opacity: 0.9;
-            animation: streamFlow 3s infinite linear reverse;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
         }
         
-        .golden-stream::before {
-            content: '';
+        .data-particle {
             position: absolute;
-            top: -20px;
-            width: 100%;
-            height: 40px;
-            background: inherit;
-            filter: blur(15px);
-            opacity: 0.6;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            filter: blur(1px);
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        @keyframes streamFlow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 300% 50%; }
+        /* Chaos particles */
+        .chaos-particle {
+            background: linear-gradient(45deg, #ff3300, #ff9900);
+            box-shadow: 0 0 10px #ff3300;
+            animation: flowToVortex 3s infinite;
         }
         
-        @keyframes floatParticle {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
+        /* Golden particles */
+        .golden-particle {
+            background: linear-gradient(45deg, #ffd700, #ffaa00);
+            box-shadow: 0 0 15px #ffd700;
+            animation: flowFromVortex 3s infinite;
+        }
+        
+        @keyframes flowToVortex {
+            0% { 
+                transform: translateX(0) translateY(0) scale(1); 
+                opacity: 0; 
+            }
             10% { opacity: 1; }
             90% { opacity: 1; }
-            100% { transform: translateY(-200px) translateX(100px); opacity: 0; }
+            100% { 
+                transform: translateX(200px) translateY(-100px) scale(0); 
+                opacity: 0; 
+            }
         }
         
-        /* Target Planets */
+        @keyframes flowFromVortex {
+            0% { 
+                transform: translateX(0) translateY(0) scale(0); 
+                opacity: 0; 
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateX(200px) translateY(-100px) scale(1); 
+                opacity: 0; 
+            }
+        }
+        
+        /* UI debris - НОВОЕ: плавающие элементы интерфейса */
+        .ui-debris {
+            position: absolute;
+            color: #fff;
+            font-size: 24px;
+            opacity: 0.7;
+            text-shadow: 0 0 10px currentColor;
+            animation: floatDebris 15s infinite linear;
+        }
+        
+        @keyframes floatDebris {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+        
+        /* Target Planets - УЛУЧШЕНО */
         .target-planets {
             position: absolute;
             top: 0;
@@ -293,7 +364,9 @@
             position: absolute;
             border-radius: 50%;
             background: radial-gradient(circle at 30% 30%, #444, #000);
-            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.8);
+            box-shadow: 
+                inset -10px -10px 20px rgba(0,0,0,0.8),
+                0 0 40px rgba(255, 215, 0, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -301,29 +374,39 @@
             font-weight: bold;
             font-size: 14px;
             text-shadow: 0 0 5px black;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .planet:hover {
+            transform: scale(1.2);
+            box-shadow: 
+                inset -10px -10px 20px rgba(0,0,0,0.8),
+                0 0 60px rgba(255, 215, 0, 0.8);
         }
         
         .planet-1 {
             top: 20%;
             right: 15%;
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             animation: floatPlanet 25s infinite linear;
         }
         
         .planet-2 {
             top: 60%;
             right: 5%;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             animation: floatPlanet 30s infinite linear reverse;
         }
         
         .planet-3 {
             top: 10%;
             right: 25%;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             animation: floatPlanet 35s infinite linear;
         }
         
@@ -335,46 +418,68 @@
             100% { transform: translateY(0) rotate(360deg); }
         }
         
-        /* Control Panel */
+        /* Control Panel - УЛУЧШЕНО */
         .control-panel {
-            position: absolute;
+            position: fixed;
             bottom: 30px;
             left: 30px;
-            width: 320px;
-            height: 180px;
-            background: rgba(0, 10, 30, 0.8);
-            border: 1px solid rgba(0, 200, 255, 0.5);
-            border-radius: 10px;
-            padding: 15px;
+            width: 380px;
+            height: 220px;
+            background: rgba(5, 15, 35, 0.85);
+            border: 1px solid rgba(0, 200, 255, 0.6);
+            border-radius: 12px;
+            padding: 20px;
             z-index: 100;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             box-shadow: 
-                0 0 30px rgba(0, 150, 255, 0.3),
-                inset 0 0 30px rgba(0, 150, 255, 0.1);
+                0 0 40px rgba(0, 150, 255, 0.4),
+                inset 0 0 40px rgba(0, 150, 255, 0.1);
             font-family: 'Orbitron', sans-serif;
+            transition: transform 0.3s;
+        }
+        
+        .control-panel:hover {
+            transform: translateY(-5px);
         }
         
         .dashboard {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-gap: 10px;
-            margin-top: 10px;
+            grid-gap: 15px;
+            margin-top: 15px;
         }
         
         .metric {
             background: rgba(0, 30, 60, 0.7);
-            padding: 8px;
-            border-radius: 5px;
-            border-left: 3px solid #00aaff;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #00aaff;
+            transition: all 0.3s;
+        }
+        
+        .metric:hover {
+            background: rgba(0, 40, 80, 0.9);
+            transform: translateX(5px);
+        }
+        
+        .metric-title {
+            font-size: 12px;
+            color: #aaddff;
+            margin-bottom: 5px;
         }
         
         .metric-value {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: 700;
             color: #00ffaa;
-            margin-top: 5px;
             display: flex;
             align-items: center;
+            justify-content: space-between;
+        }
+        
+        .metric-change {
+            font-size: 12px;
+            color: #00ff00;
         }
         
         .pulsing {
@@ -382,9 +487,32 @@
         }
         
         @keyframes pulse {
-            0% { opacity: 0.7; }
-            50% { opacity: 1; }
-            100% { opacity: 0.7; }
+            0% { opacity: 0.7; text-shadow: 0 0 5px #00ffaa; }
+            50% { opacity: 1; text-shadow: 0 0 15px #00ffaa; }
+            100% { opacity: 0.7; text-shadow: 0 0 5px #00ffaa; }
+        }
+        
+        /* Analytics Panel - НОВОЕ: панель аналитики */
+        .analytics-panel {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            width: 350px;
+            background: rgba(5, 15, 35, 0.85);
+            border: 1px solid rgba(255, 0, 255, 0.6);
+            border-radius: 12px;
+            padding: 20px;
+            z-index: 100;
+            backdrop-filter: blur(15px);
+            box-shadow: 
+                0 0 40px rgba(255, 0, 255, 0.3),
+                inset 0 0 40px rgba(255, 0, 255, 0.1);
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .chart-container {
+            height: 200px;
+            margin-top: 15px;
         }
         
         /* Main Content */
@@ -405,129 +533,216 @@
         
         .logo {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 80px;
-            letter-spacing: 5px;
-            color: #00f7ff;
+            font-size: 100px;
+            letter-spacing: 8px;
+            color: transparent;
+            background: linear-gradient(45deg, #00f7ff, #ff00ff, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
             text-shadow: 
-                0 0 20px #00f7ff,
-                0 0 40px rgba(0, 247, 255, 0.5);
+                0 0 30px rgba(0, 247, 255, 0.5),
+                0 0 60px rgba(0, 247, 255, 0.3);
             position: relative;
             display: inline-block;
+            animation: logoGlow 3s infinite alternate;
+        }
+        
+        @keyframes logoGlow {
+            0% { filter: drop-shadow(0 0 20px rgba(0, 247, 255, 0.7)); }
+            100% { filter: drop-shadow(0 0 40px rgba(255, 0, 255, 0.7)); }
         }
         
         .logo::after {
             content: '.space';
             font-family: 'Exo 2', sans-serif;
-            font-size: 20px;
+            font-size: 24px;
             position: absolute;
-            bottom: -15px;
+            bottom: -20px;
             right: 0;
-            color: #aaa;
+            color: #aaddff;
             letter-spacing: 1px;
         }
         
         .tagline {
             text-align: center;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 64px;
-            letter-spacing: 3px;
+            font-size: 72px;
+            letter-spacing: 4px;
             color: white;
             margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+            line-height: 1.1;
         }
         
         .subheading {
             text-align: center;
             font-family: 'Exo 2', sans-serif;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 300;
             color: #aaddff;
-            margin-bottom: 40px;
-            letter-spacing: 2px;
+            margin-bottom: 60px;
+            letter-spacing: 3px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
+        /* Features Grid - УЛУЧШЕНО */
         .features {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+            pointer-events: auto;
         }
         
         .feature {
-            width: 30%;
-            background: rgba(0, 20, 40, 0.6);
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(0, 150, 255, 0.3);
-            pointer-events: auto;
-            backdrop-filter: blur(5px);
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: rgba(0, 20, 40, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 150, 255, 0.4);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.1), transparent);
+            transition: left 0.6s;
         }
         
         .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 100, 255, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 100, 255, 0.4);
+            border-color: #00f7ff;
+        }
+        
+        .feature:hover::before {
+            left: 100%;
         }
         
         .feature-icon {
-            font-size: 30px;
+            font-size: 40px;
             color: #00f7ff;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .feature-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 18px;
-            margin-bottom: 10px;
+            font-size: 22px;
+            margin-bottom: 15px;
             color: #aaddff;
         }
         
-        /* Data Particles */
-        .data-particle {
-            position: absolute;
-            border-radius: 50%;
-            z-index: 2;
-            opacity: 0.7;
+        .feature-description {
+            color: #ccddff;
+            line-height: 1.6;
         }
         
-        /* Shooting Stars */
-        .shooting-star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 0 10px white;
-            z-index: 1;
-        }
-        
-        /* Floating Elements */
-        .floating-element {
-            position: absolute;
-            z-index: 5;
-            opacity: 0.7;
-            font-size: 20px;
-        }
-        
-        /* Footer */
-        .footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 15px;
+        /* CTA Button - НОВОЕ */
+        .cta-container {
             text-align: center;
-            background: rgba(0, 5, 15, 0.8);
+            margin-top: 60px;
+            pointer-events: auto;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(45deg, #00f7ff, #ff00ff);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 30px rgba(0, 247, 255, 0.5);
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(255, 0, 255, 0.7);
+        }
+        
+        /* Footer - УЛУЧШЕНО */
+        .footer {
+            position: relative;
+            width: 100%;
+            padding: 30px;
+            text-align: center;
+            background: rgba(0, 5, 15, 0.9);
             z-index: 300;
             font-family: 'Exo 2', sans-serif;
-            font-size: 14px;
-            color: #8899aa;
-            border-top: 1px solid rgba(0, 100, 255, 0.2);
+            margin-top: 100px;
+            border-top: 1px solid rgba(0, 100, 255, 0.3);
+            backdrop-filter: blur(10px);
         }
         
-        /* Responsive */
-        @media (max-width: 1100px) {
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        
+        .copyright {
+            color: #8899aa;
+            font-size: 14px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .social-link {
+            color: #aaddff;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-link:hover {
+            color: #00f7ff;
+        }
+        
+        /* Responsive - УЛУЧШЕНО */
+        @media (max-width: 1200px) {
+            .vortex-container {
+                width: 800px;
+                height: 800px;
+            }
+            
+            .ring-1 { width: 280px; height: 280px; }
+            .ring-2 { width: 400px; height: 400px; }
+            .ring-3 { width: 520px; height: 520px; }
+            .ring-4 { width: 640px; height: 640px; }
+            .ring-5 { width: 760px; height: 760px; }
+            
+            .tagline {
+                font-size: 56px;
+            }
+            
+            .logo {
+                font-size: 80px;
+            }
+        }
+        
+        @media (max-width: 992px) {
             .vortex-container {
                 width: 600px;
                 height: 600px;
@@ -543,8 +758,19 @@
                 font-size: 48px;
             }
             
-            .feature {
-                width: 48%;
+            .control-panel, .analytics-panel {
+                position: relative;
+                top: auto;
+                bottom: auto;
+                left: auto;
+                right: auto;
+                width: 100%;
+                max-width: 500px;
+                margin: 20px auto;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -567,15 +793,13 @@
                 font-size: 18px;
             }
             
-            .feature {
-                width: 100%;
+            .logo {
+                font-size: 60px;
             }
             
-            .control-panel {
-                width: 280px;
-                height: 160px;
-                left: 50%;
-                transform: translateX(-50%);
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
             }
         }
     </style>
@@ -603,51 +827,75 @@
                 <div class="ring ring-5"></div>
                 <div class="ring ring-6"></div>
             </div>
-            <div class="vortex-core"></div>
+            <div class="vortex-core">
+                <div class="core-fractal"></div>
+            </div>
             
             <!-- Data Streams -->
             <div class="data-streams">
-                <div class="chaos-stream"></div>
-                <div class="golden-stream"></div>
+                <div class="chaos-stream-container" id="chaos-stream"></div>
+                <div class="golden-stream-container" id="golden-stream"></div>
             </div>
             
             <!-- Target Planets -->
             <div class="target-planets">
-                <div class="planet planet-1">TARGET</div>
-                <div class="planet planet-2">GOAL</div>
-                <div class="planet planet-3">CONVERT</div>
+                <div class="planet planet-1" data-metric="conversion">CONVERT</div>
+                <div class="planet planet-2" data-metric="roi">ROI</div>
+                <div class="planet planet-3" data-metric="engagement">ENGAGE</div>
             </div>
         </div>
-        
-        <!-- Floating UI Elements -->
-        <div class="floating-element" style="top: 20%; left: 5%;">404</div>
-        <div class="floating-element" style="top: 70%; left: 8%;">❌</div>
-        <div class="floating-element" style="top: 30%; right: 8%;">💰</div>
-        <div class="floating-element" style="top: 80%; right: 5%;">✅</div>
     </div>
     
     <!-- Control Panel -->
     <div class="control-panel">
-        <div style="color: #00f7ff; font-size: 20px; margin-bottom: 5px;">ADVORTEX CONTROL</div>
-        <div style="color: #aaddff; font-size: 12px; margin-bottom: 15px;">Real-time Advertising Dashboard</div>
+        <div style="color: #00f7ff; font-size: 22px; margin-bottom: 5px; display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-satellite-dish"></i>
+            ADVORTEX CONTROL
+        </div>
+        <div style="color: #aaddff; font-size: 12px; margin-bottom: 20px;">Real-time Advertising Intelligence Dashboard</div>
         
         <div class="dashboard">
             <div class="metric">
-                <div>Active Campaigns</div>
-                <div class="metric-value" id="campaigns">1,247</div>
+                <div class="metric-title">Active Campaigns</div>
+                <div class="metric-value">
+                    <span id="campaigns">1,247</span>
+                    <span class="metric-change" id="campaigns-change">+12</span>
+                </div>
             </div>
             <div class="metric">
-                <div>Conversion Rate</div>
-                <div class="metric-value pulsing" id="conversion">8.9%</div>
+                <div class="metric-title">Conversion Rate</div>
+                <div class="metric-value pulsing">
+                    <span id="conversion">8.9%</span>
+                    <span class="metric-change" id="conversion-change">↗</span>
+                </div>
             </div>
             <div class="metric">
-                <div>Audience Reach</div>
-                <div class="metric-value" id="reach">2.4B</div>
+                <div class="metric-title">Audience Reach</div>
+                <div class="metric-value">
+                    <span id="reach">2.4B</span>
+                    <span class="metric-change" id="reach-change">+3.2%</span>
+                </div>
             </div>
             <div class="metric">
-                <div>ROI Increase</div>
-                <div class="metric-value" id="roi">+247%</div>
+                <div class="metric-title">Avg. ROI Increase</div>
+                <div class="metric-value">
+                    <span id="roi">+247%</span>
+                    <span class="metric-change" id="roi-change">+18%</span>
+                </div>
             </div>
+        </div>
+    </div>
+    
+    <!-- Analytics Panel -->
+    <div class="analytics-panel">
+        <div style="color: #ff00ff; font-size: 18px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-chart-network"></i>
+            PERFORMANCE ANALYTICS
+        </div>
+        <div style="color: #ffaaff; font-size: 11px; margin-bottom: 15px;">Real-time Campaign Optimization Metrics</div>
+        
+        <div class="chart-container">
+            <canvas id="performanceChart"></canvas>
         </div>
     </div>
     
@@ -657,152 +905,401 @@
             <div class="logo">ADVORTEX</div>
         </div>
         
-        <h1 class="tagline">TRANSFORM TRAFFIC INTO TRIUMPH</h1>
-        <h2 class="subheading">AI-Powered Advertising Precision</h2>
+        <h1 class="tagline">TRANSFORM CHAOS<br>INTO CONVERSIONS</h1>
+        <h2 class="subheading">AI-Powered Advertising Precision at Quantum Scale</h2>
         
         <div class="features">
             <div class="feature">
                 <div class="feature-icon"><i class="fas fa-brain"></i></div>
-                <h3 class="feature-title">SENTIENT DATA VORTEX</h3>
-                <p>Our colossal AI engine processes chaotic internet traffic in real-time, transforming it into laser-targeted conversion streams.</p>
+                <h3 class="feature-title">QUANTUM AI PROCESSING</h3>
+                <p class="feature-description">Our sentient data vortex processes petabytes of chaotic internet traffic through quantum-inspired algorithms, identifying patterns invisible to traditional systems.</p>
             </div>
             
             <div class="feature">
-                <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
-                <h3 class="feature-title">PRECISION TARGETING</h3>
-                <p>Advanced algorithms analyze and segment data with unprecedented accuracy, ensuring your message reaches the perfect audience.</p>
+                <div class="feature-icon"><i class="fas fa-crosshairs"></i></div>
+                <h3 class="feature-title">PRECISION AUDIENCE TARGETING</h3>
+                <p class="feature-description">Laser-focused audience segmentation with 99.7% accuracy. Transform random traffic into qualified leads with our predictive intent modeling.</p>
             </div>
             
             <div class="feature">
-                <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="feature-icon"><i class="fas fa-bolt"></i></div>
                 <h3 class="feature-title">REAL-TIME OPTIMIZATION</h3>
-                <p>Continuous learning and adaptation maximize ROI while minimizing CPA across all advertising channels and platforms.</p>
+                <p class="feature-description">Continuous A/B testing across 1,000+ dimensions with millisecond adaptation. Our system learns and evolves with every interaction.</p>
             </div>
+            
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3 class="feature-title">PRIVACY-FIRST ANALYTICS</h3>
+                <p class="feature-description">Zero-party data collection with blockchain-verified consent. Get unparalleled insights while maintaining complete user privacy compliance.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-globe-americas"></i></div>
+                <h3 class="feature-title">OMNI-CHANNEL ORCHESTRATION</h3>
+                <p class="feature-description">Seamlessly coordinate campaigns across 50+ channels with unified messaging and budget allocation powered by our vortex intelligence.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-cube"></i></div>
+                <h3 class="feature-title">PREDICTIVE ROI MODELING</h3>
+                <p class="feature-description">Forecast campaign performance with 94% accuracy before launch. Our predictive algorithms simulate millions of scenarios to maximize returns.</p>
+            </div>
+        </div>
+        
+        <div class="cta-container">
+            <button class="cta-button" onclick="launchDemo()">
+                <i class="fas fa-rocket"></i>
+                LAUNCH VORTEX DEMO
+                <i class="fas fa-arrow-right"></i>
+            </button>
+            <p style="margin-top: 20px; color: #aaddff; font-size: 14px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Join 2,400+ enterprises transforming their advertising with ADVORTEX AI
+            </p>
         </div>
     </div>
     
     <!-- Footer -->
     <div class="footer">
-        ADVORTEX CINEMATIC MASTERPIECE VISUAL | HYPER-DETAILED PHOTOREALISTIC RENDER | EPIC SCALE CYBERSPACE ENVIRONMENT
+        <div class="footer-content">
+            <div class="copyright">
+                © 2024 ADVORTEX.space | Quantum Advertising Intelligence
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
     </div>
     
     <script>
-        // Create data particles
-        function createDataParticles() {
-            const colors = ['#ff3300', '#ff9900', '#ffff00', '#00f7ff', '#ff00ff', '#ffd700'];
-            const cyberspace = document.querySelector('.cyberspace');
+        // Create data particles for streams
+        function createStreamParticles() {
+            const chaosStream = document.getElementById('chaos-stream');
+            const goldenStream = document.getElementById('golden-stream');
             
-            for (let i = 0; i < 150; i++) {
+            // Create chaos particles (input stream)
+            for (let i = 0; i < 40; i++) {
                 const particle = document.createElement('div');
-                particle.className = 'data-particle';
+                particle.className = 'data-particle chaos-particle';
                 
                 // Random properties
-                const size = Math.random() * 6 + 2;
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                const left = Math.random() * 100;
-                const top = Math.random() * 100;
-                const duration = Math.random() * 20 + 10;
-                const delay = Math.random() * 5;
+                const size = Math.random() * 10 + 5;
+                const left = Math.random() * 400;
+                const top = Math.random() * 200;
+                const duration = Math.random() * 2 + 2;
+                const delay = Math.random() * 3;
                 
-                // Apply styles
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
-                particle.style.backgroundColor = color;
-                particle.style.left = `${left}%`;
-                particle.style.top = `${top}%`;
-                particle.style.animation = `floatParticle ${duration}s infinite linear ${delay}s`;
+                particle.style.left = `${left}px`;
+                particle.style.top = `${top}px`;
+                particle.style.animation = `flowToVortex ${duration}s infinite linear ${delay}s`;
                 
-                cyberspace.appendChild(particle);
+                chaosStream.appendChild(particle);
+            }
+            
+            // Create golden particles (output stream)
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'data-particle golden-particle';
+                
+                // Random properties
+                const size = Math.random() * 10 + 5;
+                const left = Math.random() * 400;
+                const top = Math.random() * 200;
+                const duration = Math.random() * 2 + 2;
+                const delay = Math.random() * 3;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}px`;
+                particle.style.top = `${top}px`;
+                particle.style.animation = `flowFromVortex ${duration}s infinite linear ${delay}s`;
+                
+                goldenStream.appendChild(particle);
             }
         }
         
-        // Create shooting stars
-        function createShootingStars() {
+        // Create UI debris floating elements
+        function createUIDebris() {
+            const icons = ['❌', '⚠️', '🌀', '📊', '💰', '🚀', '🎯', '⚡', '🔒', '🌐', '404', '💸', '📈', '🔄'];
             const cyberspace = document.querySelector('.cyberspace');
             
-            for (let i = 0; i < 8; i++) {
-                const star = document.createElement('div');
-                star.className = 'shooting-star';
+            for (let i = 0; i < 15; i++) {
+                const debris = document.createElement('div');
+                debris.className = 'ui-debris';
+                debris.textContent = icons[Math.floor(Math.random() * icons.length)];
                 
                 // Random properties
                 const left = Math.random() * 100;
-                const top = Math.random() * 100;
-                const duration = Math.random() * 3 + 2;
-                const delay = Math.random() * 10;
+                const delay = Math.random() * 15;
+                const duration = Math.random() * 10 + 15;
+                const fontSize = Math.random() * 20 + 16;
+                const color = i < 5 ? '#ff3300' : (i < 10 ? '#ffff00' : '#00f7ff');
                 
-                // Apply styles
-                star.style.left = `${left}%`;
-                star.style.top = `${top}%`;
-                star.style.animation = `shootStar ${duration}s infinite linear ${delay}s`;
+                debris.style.left = `${left}%`;
+                debris.style.animationDelay = `${delay}s`;
+                debris.style.animationDuration = `${duration}s`;
+                debris.style.fontSize = `${fontSize}px`;
+                debris.style.color = color;
                 
-                // Add animation keyframes dynamically
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes shootStar {
-                        0% { transform: translate(0, 0); opacity: 0; }
-                        10% { opacity: 1; }
-                        100% { transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px); opacity: 0; }
-                    }
-                `;
-                document.head.appendChild(style);
-                
-                cyberspace.appendChild(star);
+                cyberspace.appendChild(debris);
             }
         }
         
-        // Animate metrics
+        // Initialize performance chart
+        function initPerformanceChart() {
+            const ctx = document.getElementById('performanceChart').getContext('2d');
+            
+            // Generate time labels for last 7 days
+            const timeLabels = [];
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                timeLabels.push(date.toLocaleDateString('en-US', { weekday: 'short' }));
+            }
+            
+            const chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: timeLabels,
+                    datasets: [
+                        {
+                            label: 'Conversion Rate',
+                            data: [6.2, 7.1, 7.5, 8.2, 8.5, 8.7, 8.9],
+                            borderColor: '#00ffaa',
+                            backgroundColor: 'rgba(0, 255, 170, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'ROI Increase',
+                            data: [180, 195, 210, 225, 235, 242, 247],
+                            borderColor: '#ffd700',
+                            backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#aaddff',
+                                font: {
+                                    family: 'Orbitron',
+                                    size: 10
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                color: 'rgba(100, 150, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#88aaff'
+                            }
+                        },
+                        y: {
+                            grid: {
+                                color: 'rgba(100, 150, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#88aaff'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Animate chart data
+            setInterval(() => {
+                const conversionData = chart.data.datasets[0].data;
+                const roiData = chart.data.datasets[1].data;
+                
+                // Add new random data point
+                const newConversion = conversionData[conversionData.length - 1] + (Math.random() * 0.4 - 0.2);
+                const newROI = roiData[roiData.length - 1] + (Math.random() * 10 - 5);
+                
+                // Remove first data point and add new one
+                conversionData.shift();
+                roiData.shift();
+                conversionData.push(Math.max(6, Math.min(10, newConversion)));
+                roiData.push(Math.max(200, Math.min(300, newROI)));
+                
+                chart.update();
+            }, 5000);
+            
+            return chart;
+        }
+        
+        // Animate metrics with realistic fluctuations
         function animateMetrics() {
-            const conversionElem = document.getElementById('conversion');
-            const reachElem = document.getElementById('reach');
-            const campaignsElem = document.getElementById('campaigns');
-            const roiElem = document.getElementById('roi');
+            const metrics = {
+                campaigns: { value: 1247, change: 12 },
+                conversion: { value: 8.9, change: '↗' },
+                reach: { value: 2.4, change: '+3.2%' },
+                roi: { value: 247, change: '+18%' }
+            };
             
-            let conversion = 8.9;
-            let reach = 2400000000;
-            let campaigns = 1247;
-            let roi = 247;
-            
-            // Animate conversion rate
+            // Update metrics periodically
             setInterval(() => {
-                conversion += (Math.random() * 0.2 - 0.1);
-                conversion = Math.max(8.5, Math.min(9.5, conversion));
-                conversionElem.textContent = conversion.toFixed(1) + '%';
-            }, 2000);
-            
-            // Animate reach counter
-            setInterval(() => {
-                reach += Math.floor(Math.random() * 10000);
-                if (reach > 2500000000) reach = 2400000000;
-                reachElem.textContent = (reach / 1000000000).toFixed(1) + 'B';
-            }, 1500);
-            
-            // Animate campaigns
-            setInterval(() => {
-                campaigns += Math.floor(Math.random() * 5 - 2);
-                campaigns = Math.max(1240, Math.min(1260, campaigns));
-                campaignsElem.textContent = campaigns.toLocaleString();
+                // Campaigns
+                metrics.campaigns.value += Math.floor(Math.random() * 5 - 2);
+                metrics.campaigns.value = Math.max(1230, Math.min(1270, metrics.campaigns.value));
+                metrics.campaigns.change = Math.random() > 0.5 ? `+${Math.floor(Math.random() * 5)}` : `-${Math.floor(Math.random() * 3)}`;
+                
+                // Conversion rate
+                metrics.conversion.value += (Math.random() * 0.3 - 0.15);
+                metrics.conversion.value = Math.max(8.0, Math.min(9.5, metrics.conversion.value));
+                metrics.conversion.change = metrics.conversion.value > 8.9 ? '↗' : '↘';
+                
+                // Audience reach
+                metrics.reach.value += (Math.random() * 0.1 - 0.05);
+                metrics.reach.value = Math.max(2.3, Math.min(2.5, metrics.reach.value));
+                metrics.reach.change = Math.random() > 0.5 ? `+${(Math.random() * 0.5).toFixed(1)}%` : `-${(Math.random() * 0.3).toFixed(1)}%`;
+                
+                // ROI
+                metrics.roi.value += Math.floor(Math.random() * 10 - 5);
+                metrics.roi.value = Math.max(230, Math.min(260, metrics.roi.value));
+                metrics.roi.change = Math.random() > 0.5 ? `+${Math.floor(Math.random() * 15)}%` : `-${Math.floor(Math.random() * 10)}%`;
+                
+                // Update DOM
+                document.getElementById('campaigns').textContent = metrics.campaigns.value.toLocaleString();
+                document.getElementById('campaigns-change').textContent = metrics.campaigns.change;
+                
+                document.getElementById('conversion').textContent = metrics.conversion.value.toFixed(1) + '%';
+                document.getElementById('conversion-change').textContent = metrics.conversion.change;
+                
+                document.getElementById('reach').textContent = metrics.reach.value.toFixed(1) + 'B';
+                document.getElementById('reach-change').textContent = metrics.reach.change;
+                
+                document.getElementById('roi').textContent = '+' + metrics.roi.value + '%';
+                document.getElementById('roi-change').textContent = metrics.roi.change;
+                
             }, 3000);
+        }
+        
+        // Planet click interaction
+        function setupPlanetInteractions() {
+            const planets = document.querySelectorAll('.planet');
+            planets.forEach(planet => {
+                planet.addEventListener('click', function() {
+                    const metric = this.getAttribute('data-metric');
+                    const metrics = {
+                        'conversion': { value: '8.9%', desc: 'Conversion Rate' },
+                        'roi': { value: '+247%', desc: 'Average ROI Increase' },
+                        'engagement': { value: '4.7x', desc: 'Engagement Multiplier' }
+                    };
+                    
+                    // Highlight the planet
+                    this.style.boxShadow = '0 0 80px rgba(255, 215, 0, 0.9)';
+                    setTimeout(() => {
+                        this.style.boxShadow = 'inset -10px -10px 20px rgba(0,0,0,0.8), 0 0 40px rgba(255, 215, 0, 0.5)';
+                    }, 1000);
+                    
+                    // Show notification
+                    showNotification(`${metrics[metric].desc}: ${metrics[metric].value}`);
+                });
+            });
+        }
+        
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(0, 30, 60, 0.9);
+                color: #00ffaa;
+                padding: 15px 30px;
+                border-radius: 10px;
+                border: 1px solid #00ffaa;
+                z-index: 1000;
+                font-family: 'Orbitron', sans-serif;
+                font-size: 14px;
+                backdrop-filter: blur(10px);
+                box-shadow: 0 0 30px rgba(0, 255, 170, 0.5);
+                animation: fadeInOut 3s forwards;
+            `;
             
-            // Animate ROI
-            setInterval(() => {
-                roi += Math.floor(Math.random() * 10 - 5);
-                roi = Math.max(240, Math.min(260, roi));
-                roiElem.textContent = '+' + roi + '%';
-            }, 2500);
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
+        // Launch demo function
+        function launchDemo() {
+            showNotification('Launching ADVORTEX Demo Simulation...');
+            
+            // Intensify vortex animations
+            const rings = document.querySelectorAll('.ring');
+            rings.forEach(ring => {
+                const currentAnimation = ring.style.animation;
+                ring.style.animation = currentAnimation.replace(/\d+/g, match => Math.floor(parseInt(match) * 0.5));
+            });
+            
+            // Increase particle generation
+            setTimeout(() => {
+                createStreamParticles();
+                createStreamParticles();
+            }, 500);
+            
+            // Reset after 5 seconds
+            setTimeout(() => {
+                rings.forEach(ring => {
+                    const currentAnimation = ring.style.animation;
+                    ring.style.animation = currentAnimation.replace(/\d+/g, match => Math.floor(parseInt(match) * 2));
+                });
+            }, 5000);
         }
         
         // Initialize everything when page loads
         document.addEventListener('DOMContentLoaded', () => {
-            createDataParticles();
-            createShootingStars();
+            createStreamParticles();
+            createUIDebris();
+            const chart = initPerformanceChart();
             animateMetrics();
+            setupPlanetInteractions();
             
-            // Add some interactive effects
-            const vortex = document.querySelector('.vortex-container');
+            // Add CSS for fadeInOut animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInOut {
+                    0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+                    10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                    90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                    100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Parallax effect on mouse move
             document.addEventListener('mousemove', (e) => {
-                const x = (e.clientX / window.innerWidth - 0.5) * 10;
-                const y = (e.clientY / window.innerHeight - 0.5) * 10;
+                const x = (e.clientX / window.innerWidth - 0.5) * 20;
+                const y = (e.clientY / window.innerHeight - 0.5) * 20;
+                
+                const vortex = document.querySelector('.vortex-container');
                 vortex.style.transform = `translate(-50%, -50%) rotateX(${10 + y}deg) rotateY(${x}deg)`;
+                
+                const panels = document.querySelectorAll('.control-panel, .analytics-panel');
+                panels.forEach(panel => {
+                    panel.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
+                });
             });
         });
         
